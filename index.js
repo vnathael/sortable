@@ -12,13 +12,15 @@ document.addEventListener("DOMContentLoaded", () => {
     const pageSizeSelect = document.querySelector("#page-size");
     const pagination = document.querySelector("#pagination");
 
+    const loadData = (data) => {
+        heroes = data;
+        filteredHeroes = [...heroes];
+        renderTable();
+    };
+
     fetch(API_URL)
         .then(response => response.json())
-        .then(data => {
-            heroes = data;
-            filteredHeroes = [...heroes];
-            renderTable();
-        });
+        .then(loadData);
 
     searchInput.addEventListener("input", () => {
         const query = searchInput.value.toLowerCase();
