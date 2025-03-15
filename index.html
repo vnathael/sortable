@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Villain Superheroes</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            cursor: pointer;
+            background-color: #333;
+            color: white;
+        }
+        img {
+            width: 50px;
+            height: 50px;
+        }
+        .active {
+            font-weight: bold;
+            background-color: #555;
+        }
+    </style>
+</head>
+<body>
+    <h1>Villain Superheroes Database</h1>
+    <input type="text" id="search" placeholder="Rechercher un héros...">
+    <select id="page-size">
+        <option value="10">10</option>
+        <option value="20" selected>20</option>
+        <option value="50">50</option>
+        <option value="100">100</option>
+        <option value="all">Tous</option>
+    </select>
+    <table>
+        <thead>
+            <tr>
+                <th>Icon</th>
+                <th data-column="name">Name</th>
+                <th data-column="fullName">Full Name</th>
+                <th data-column="powerstats">Powerstats</th>
+                <th data-column="race">Race</th>
+                <th data-column="gender">Gender</th>
+                <th data-column="height">Height</th>
+                <th data-column="weight">Weight</th>
+                <th data-column="placeOfBirth">Place Of Birth</th>
+                <th data-column="alignment">Alignment</th>
+            </tr>
+        </thead>
+        <tbody id="table-body"></tbody>
+    </table>
+    <div id="pagination"></div>
+    <script src="index.js"></script>
+</body>
+</html>
