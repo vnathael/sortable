@@ -4,17 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
-    <title>Villain Superheroes</title>
+    <title>Super-humans Database</title>
 </head>
 <body>
-    <h1>Villain Superheroes Database</h1>
+    <h1>Suuper-humans Database</h1>
     <input type="text" id="search" placeholder="Rechercher un héros...">
     <select id="page-size">
         <option value="10">10</option>
         <option value="20" selected>20</option>
         <option value="50">50</option>
         <option value="100">100</option>
-        <option value="all">Tous</option>
+        <option value="731">Tous</option>
     </select>
     <table>
         <thead>
@@ -35,5 +35,12 @@
     </table>
     <div id="pagination"></div>
     <script src="index.js"></script>
+    <div id="detail-view" style="display:none; background-color: #222; padding: 20px; color: white; margin-top: 20px; border-radius: 10px; overflow-y: auto;">
+        <h2 id="detail-name"></h2>
+        <div id="detail-icon"></div>
+        <p><strong>Full Name:</strong> <span id="detail-fullName"></span></p>
+        <p><strong>Powerstats:</strong> <span id="detail-powerstats"></span></p>
+    </div>
+    
 </body>
 </html>

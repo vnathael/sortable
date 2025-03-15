@@ -11,6 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const searchInput = document.querySelector("#search");
     const pageSizeSelect = document.querySelector("#page-size");
     const pagination = document.querySelector("#pagination");
+    const detailView = document.querySelector("#detail-view");
 
     const loadData = (data) => {
         heroes = data;
@@ -45,7 +46,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const row = document.createElement("tr");
             row.innerHTML = `
                 <td><img src="${hero.images.xs}" alt="${hero.name}"></td>
-                <td>${hero.name}</td>
+                <td><span class="hero-name" data-id="${hero.id}">${hero.name}</span></td>
                 <td>${hero.biography.fullName || "N/A"}</td>
                 <td>${Object.values(hero.powerstats).join(" | ")}</td>
                 <td>${hero.appearance.race || "Unknown"}</td>
@@ -59,6 +60,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
         renderPagination();
+        addNameClickEvent();
     }
 
     function renderPagination() {
@@ -126,5 +128,41 @@ document.addEventListener("DOMContentLoaded", () => {
             case "powerstats": return Object.values(hero.powerstats).reduce((a, b) => a + b, 0);
             default: return "";
         }
+    }
+
+    function addNameClickEvent() {
+        const heroNames = document.querySelectorAll(".hero-name");
+        heroNames.forEach(name => {
+            name.addEventListener("click", () => {
+                const heroId = name.getAttribute("data-id");
+                const hero = heroes.find(h => h.id == heroId);
+                showHeroDetail(hero);
+            });
+        });
+    }
+
+    function showHeroDetail(hero) {
+        detailView.innerHTML = `
+            <div id="hero-detail">
+                <img src="${hero.images.md}" alt="${hero.name}">
+                <div>
+                    <h2>${hero.name}</h2>
+                    <p><strong>Full Name:</strong> ${hero.biography.fullName || "N/A"}</p>
+                    <p><strong>Race:</strong> ${hero.appearance.race || "Unknown"}</p>
+                    <p><strong>Gender:</strong> ${hero.appearance.gender}</p>
+                    <p><strong>Height:</strong> ${hero.appearance.height[1]}</p>
+                    <p><strong>Weight:</strong> ${hero.appearance.weight[1]}</p>
+                    <p><strong>Place of Birth:</strong> ${hero.biography.placeOfBirth || "Unknown"}</p>
+                    <p><strong>Alignment:</strong> ${hero.biography.alignment}</p>
+                    <p><strong>Powerstats:</strong> ${Object.values(hero.powerstats).join(" | ")}</p>
+                </div>
+                <button class="close-btn" onclick="closeDetailView()">Close</button>
+            </div>
+        `;
+        detailView.style.display = "block";
+    }
+
+    window.closeDetailView = function() {
+        detailView.style.display = "none";
     }
 });
