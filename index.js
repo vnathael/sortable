@@ -96,10 +96,15 @@ document.addEventListener("DOMContentLoaded", () => {
         filteredHeroes.sort((a, b) => {
             let valA = getValue(a, sortColumn);
             let valB = getValue(b, sortColumn);
-            
-            if (!valA) return 1;
-            if (!valB) return -1;
-            
+    
+            const isMissingA = valA === null || valA === undefined || valA === "" || valA === "-";
+            const isMissingB = valB === null || valB === undefined || valB === "" || valB === "-";
+    
+            if (isMissingA && !isMissingB) return 1;
+            if (isMissingB && !isMissingA) return -1;
+    
+            if (isMissingA && isMissingB) return 0;
+    
             if (!isNaN(parseFloat(valA)) && !isNaN(parseFloat(valB))) {
                 return sortOrder === "asc" ? valA - valB : valB - valA;
             } else {
