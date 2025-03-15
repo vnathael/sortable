@@ -1,21 +1,21 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #111;
+    background-color: #190325;
     color: white;
     text-align: center;
     margin: 20px;
 }
 
 h1 {
-    color: red;
+    color: #e6579e;
 }
 
 input, select {
     padding: 10px;
     margin: 10px;
     font-size: 16px;
-    border: 1px solid red;
-    background-color: black;
+    border: 1px solid #8c17c2;
+    background-color: #4c2569;
     color: white;
 }
 
@@ -26,19 +26,19 @@ table {
 }
 
 th, td {
-    border: 1px solid red;
+    border: 1px solid #e6579e;
     padding: 10px;
     text-align: left;
 }
 
 th {
     cursor: pointer;
-    background-color: darkred;
+    background-color: #A64AC9;
     color: white;
 }
 
 th:hover {
-    background-color: red;
+    background-color: #D55FAA;
 }
 
 img {
@@ -49,7 +49,7 @@ img {
 
 .active {
     font-weight: bold;
-    background-color: red;
+    background-color: #FF66B2;
 }
 
 #pagination {
@@ -57,7 +57,7 @@ img {
 }
 
 button {
-    background-color: darkred;
+    background-color: #A64AC9;
     color: white;
     border: none;
     padding: 10px;
@@ -66,7 +66,7 @@ button {
 }
 
 button:hover {
-    background-color: red;
+    background-color: #D55FAA;
 }
 
 #detail-view {
@@ -75,10 +75,10 @@ button:hover {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: #222;
+    background-color: #3B1F46;
     color: white;
     padding: 20px;
-    border: 2px solid red;
+    border: 2px solid #FF66B2;
     border-radius: 10px;
     z-index: 1000;
     max-width: 800px;
@@ -103,7 +103,7 @@ button:hover {
     position: absolute;
     top: 10px;
     right: 10px;
-    background-color: red;
+    background-color: #FF66B2;
     color: white;
     border: none;
     padding: 10px;
@@ -112,5 +112,5 @@ button:hover {
 }
 
 #detail-view .close-btn:hover {
-    background-color: darkred;
+    background-color: #D55FAA;
 }
