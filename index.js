@@ -120,7 +120,6 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
     }
-    
 
     function getValue(hero, column) {
         switch (column) {
@@ -128,13 +127,43 @@ document.addEventListener("DOMContentLoaded", () => {
             case "fullName": return hero.biography.fullName || "";
             case "race": return hero.appearance.race || "";
             case "gender": return hero.appearance.gender;
-            case "height": return parseInt(hero.appearance.height[1]) || 0;
-            case "weight": return parseInt(hero.appearance.weight[1]) || 0;
+            case "height": return parseHeight(hero.appearance.height[1]);
+            case "weight": return parseWeight(hero.appearance.weight[1]);
             case "placeOfBirth": return hero.biography.placeOfBirth || "";
             case "alignment": return hero.biography.alignment;
             case "powerstats": return Object.values(hero.powerstats).reduce((a, b) => a + b, 0);
             default: return "";
         }
+    }
+
+    function parseHeight(height) {
+        if (!height) return 0;
+    
+        const cleanedHeight = height.replace(",", "").toLowerCase();
+    
+        if (cleanedHeight.includes("meters")) {
+            const value = parseFloat(cleanedHeight);
+            return value * 100;
+        } else if (cleanedHeight.includes("cm")) {
+            return parseFloat(cleanedHeight);
+        }
+    
+        return 0;
+    }
+
+    function parseWeight(weight) {
+        if (!weight) return 0;
+    
+        const cleanedWeight = weight.replace(",", "").toLowerCase();
+    
+        if (cleanedWeight.includes("ton")) {
+            const value = parseFloat(cleanedWeight);
+            return value * 1000;
+        } else if (cleanedWeight.includes("kg")) {
+            return parseFloat(cleanedWeight);
+        }
+    
+        return 0;
     }
 
     function addNameClickEvent() {
