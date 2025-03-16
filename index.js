@@ -99,8 +99,8 @@ document.addEventListener("DOMContentLoaded", () => {
             let valA = getValue(a, sortColumn);
             let valB = getValue(b, sortColumn);
     
-            const isMissingA = valA === null || valA === undefined || valA === "" || valA === "-" || valA === "Unknown" || valA === 0;
-            const isMissingB = valB === null || valB === undefined || valB === "" || valB === "-" || valB === "Unknown" || valB === 0;
+            const isMissingA = valA === null || valA === undefined || valA === "" || valA === "-" || valA === "Unknown" || valA === 0 || valA === "Place of birth unknown";
+            const isMissingB = valB === null || valB === undefined || valB === "" || valB === "-" || valB === "Unknown" || valB === 0 || valB === "Place of birth unknown";
     
             if (isMissingA && !isMissingB) return 1;
             if (isMissingB && !isMissingA) return -1;
@@ -178,24 +178,38 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function showHeroDetail(hero) {
-        detailView.innerHTML = `
-            <div id="hero-detail">
-                <img src="${hero.images.md}" alt="${hero.name}">
-                <div>
-                    <h2>${hero.name}</h2>
-                    <p><strong>Full Name:</strong> ${hero.biography.fullName || "N/A"}</p>
-                    <p><strong>Race:</strong> ${hero.appearance.race || "Unknown"}</p>
-                    <p><strong>Gender:</strong> ${hero.appearance.gender}</p>
-                    <p><strong>Height:</strong> ${hero.appearance.height[1]}</p>
-                    <p><strong>Weight:</strong> ${hero.appearance.weight[1]}</p>
-                    <p><strong>Place of Birth:</strong> ${hero.biography.placeOfBirth || "Unknown"}</p>
-                    <p><strong>Alignment:</strong> ${hero.biography.alignment}</p>
-                    <p><strong>Powerstats:</strong> ${Object.values(hero.powerstats).join(" | ")}</p>
-                </div>
-                <button class="close-btn" onclick="closeDetailView()">Close</button>
-            </div>
-        `;
-        detailView.style.display = "block";
+        document.getElementById("detail-icon").src = hero.images.md;
+        document.getElementById("detail-icon").alt = hero.name;
+        document.getElementById("detail-name").textContent = hero.name;
+    
+        document.getElementById("detail-fullName").textContent = hero.biography.fullName || "N/A";
+        document.getElementById("detail-alterEgos").textContent = hero.biography.alterEgos || "N/A";
+        document.getElementById("detail-aliases").textContent = hero.biography.aliases.join(", ") || "N/A";
+        document.getElementById("detail-firstAppearance").textContent = hero.biography.firstAppearance || "N/A";
+        document.getElementById("detail-publisher").textContent = hero.biography.publisher || "N/A";
+        document.getElementById("detail-alignment").textContent = hero.biography.alignment;
+    
+        document.getElementById("detail-gender").textContent = hero.appearance.gender;
+        document.getElementById("detail-race").textContent = hero.appearance.race || "Unknown";
+        document.getElementById("detail-height").textContent = hero.appearance.height[1];
+        document.getElementById("detail-weight").textContent = hero.appearance.weight[1];
+        document.getElementById("detail-eyeColor").textContent = hero.appearance.eyeColor;
+        document.getElementById("detail-hairColor").textContent = hero.appearance.hairColor;
+    
+        document.getElementById("detail-intelligence").textContent = hero.powerstats.intelligence;
+        document.getElementById("detail-strength").textContent = hero.powerstats.strength;
+        document.getElementById("detail-speed").textContent = hero.powerstats.speed;
+        document.getElementById("detail-durability").textContent = hero.powerstats.durability;
+        document.getElementById("detail-power").textContent = hero.powerstats.power;
+        document.getElementById("detail-combat").textContent = hero.powerstats.combat;
+    
+        document.getElementById("detail-occupation").textContent = hero.work.occupation || "N/A";
+        document.getElementById("detail-base").textContent = hero.work.base || "N/A";
+    
+        document.getElementById("detail-groupAffiliation").textContent = hero.connections.groupAffiliation || "N/A";
+        document.getElementById("detail-relatives").textContent = hero.connections.relatives || "N/A";
+    
+        document.getElementById("detail-view").style.display = "block";
     }
 
     window.closeDetailView = function() {

@@ -34,13 +34,62 @@
         <tbody id="table-body"></tbody>
     </table>
     <div id="pagination"></div>
-    <script src="index.js"></script>
-    <div id="detail-view" style="display:none; background-color: #222; padding: 20px; color: white; margin-top: 20px; border-radius: 10px; overflow-y: auto;">
-        <h2 id="detail-name"></h2>
-        <div id="detail-icon"></div>
-        <p><strong>Full Name:</strong> <span id="detail-fullName"></span></p>
-        <p><strong>Powerstats:</strong> <span id="detail-powerstats"></span></p>
+
+    <!-- Hero Detail Modal -->
+    <div id="detail-view">
+        <button class="close-btn" onclick="closeDetailView()">✖</button>
+        <div id="hero-detail">
+            <div class="hero-header">
+                <img id="detail-icon" src="" alt="Hero Image">
+                <h2 id="detail-name"></h2>
+            </div>
+
+            <div class="hero-section">
+                <h3>Biography</h3>
+                <p><strong>Full Name:</strong> <span id="detail-fullName"></span></p>
+                <p><strong>Alter Egos:</strong> <span id="detail-alterEgos"></span></p>
+                <p><strong>Aliases:</strong> <span id="detail-aliases"></span></p>
+                <p><strong>First Appearance:</strong> <span id="detail-firstAppearance"></span></p>
+                <p><strong>Publisher:</strong> <span id="detail-publisher"></span></p>
+                <p><strong>Alignment:</strong> <span id="detail-alignment"></span></p>
+            </div>
+
+            <div class="hero-section">
+                <h3>Appearance</h3>
+                <p><strong>Gender:</strong> <span id="detail-gender"></span></p>
+                <p><strong>Race:</strong> <span id="detail-race"></span></p>
+                <p><strong>Height:</strong> <span id="detail-height"></span></p>
+                <p><strong>Weight:</strong> <span id="detail-weight"></span></p>
+                <p><strong>Eye Color:</strong> <span id="detail-eyeColor"></span></p>
+                <p><strong>Hair Color:</strong> <span id="detail-hairColor"></span></p>
+            </div>
+
+            <div class="hero-section">
+                <h3>Powerstats</h3>
+                <div class="powerstats">
+                    <span><strong>Intelligence:</strong> <span id="detail-intelligence"></span></span>
+                    <span><strong>Strength:</strong> <span id="detail-strength"></span></span>
+                    <span><strong>Speed:</strong> <span id="detail-speed"></span></span>
+                    <span><strong>Durability:</strong> <span id="detail-durability"></span></span>
+                    <span><strong>Power:</strong> <span id="detail-power"></span></span>
+                    <span><strong>Combat:</strong> <span id="detail-combat"></span></span>
+                </div>
+            </div>
+
+            <div class="hero-section">
+                <h3>Work</h3>
+                <p><strong>Occupation:</strong> <span id="detail-occupation"></span></p>
+                <p><strong>Base:</strong> <span id="detail-base"></span></p>
+            </div>
+
+            <div class="hero-section">
+                <h3>Connections</h3>
+                <p><strong>Group Affiliation:</strong> <span id="detail-groupAffiliation"></span></p>
+                <p><strong>Relatives:</strong> <span id="detail-relatives"></span></p>
+            </div>
+        </div>
     </div>
-    
+
+    <script src="index.js"></script>
 </body>
 </html>
