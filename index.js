@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const loadData = (data) => {
         heroes = data;
     
-        const customHero = {
+        const customHero1 = {
             id: 732, 
             name: "Quentin LE GOAT",
             slug: "quentin-le-goat",
@@ -42,7 +42,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 aliases: ["GOAT", "L'Homme avec un grand H"],
                 placeOfBirth: "Mes rêves les plus fou",
                 firstAppearance: "Ynov salle 302",
-                publisher: "Unknown",
+                publisher: "His mom",
                 alignment: "Doop"
             },
             work: {
@@ -60,8 +60,54 @@ document.addEventListener("DOMContentLoaded", () => {
                 lg: "goat.jpg"
             }
         };
+
+        const customHero2 = {
+            id: 733, 
+            name: "Bunny bun",
+            slug: "bunny-bun",
+            powerstats: {
+                intelligence: 50,
+                strength: 20,
+                speed: 75,
+                durability: 30,
+                power: 10,
+                combat: 10
+            },
+            appearance: {
+                gender: "Female",
+                race: "Bnuny",
+                height: ["0'4", "10 cm"],
+                weight: ["5 lb", "2.3 kg"],
+                eyeColor: "Brown",
+                hairColor: "Fur"
+            },
+            biography: {
+                fullName: "Bunny bun",
+                alterEgos: "The Hopper",
+                aliases: ["Hoppy", "tofu"],
+                placeOfBirth: "The Meadow",
+                firstAppearance: "The Story of the Bunny",
+                publisher: "Emi's Dreams",
+                alignment: "Good"
+            },
+            work: {
+                occupation: "Grass Gatherer",
+                base: "The Bunny Hole"
+            },
+            connections: {
+                groupAffiliation: "The Bunny Brigade",
+                relatives: "Bunny Family"
+            },
+            images: {
+                xs: "bunny.jpg",
+                sm: "bunny.jpg",
+                md: "bunny.jpg",
+                lg: "bunny.jpg"
+            }
+        };
     
-        heroes.push(customHero);
+        heroes.push(customHero1);
+        heroes.push(customHero2);
         filteredHeroes = [...heroes];
     
         renderTable();
