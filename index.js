@@ -15,7 +15,55 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const loadData = (data) => {
         heroes = data;
+    
+        const customHero = {
+            id: 732, 
+            name: "Quentin LE GOAT",
+            slug: "quentin-le-goat",
+            powerstats: {
+                intelligence: 9999999,
+                strength: 9999999,
+                speed: 9999999,
+                durability: 9999999,
+                power: 9999999,
+                combat: 9999999
+            },
+            appearance: {
+                gender: "GOAT",
+                race: "GOAT",
+                height: ["7'8", "234 cm"],
+                weight: ["180 lb", "82 kg"],
+                eyeColor: "Brown",
+                hairColor: "No Hair Found"
+            },
+            biography: {
+                fullName: "Quentin Lucien-Reinette",
+                alterEgos: "Le GOAT",
+                aliases: ["GOAT", "L'Homme avec un grand H"],
+                placeOfBirth: "Mes rêves les plus fou",
+                firstAppearance: "Ynov salle 302",
+                publisher: "Unknown",
+                alignment: "Doop"
+            },
+            work: {
+                occupation: "Creator of the Doop",
+                base: "Salle 005"
+            },
+            connections: {
+                groupAffiliation: "La Table de 7",
+                relatives: "Unknown"
+            },
+            images: {
+                xs: "goat.jpg",
+                sm: "goat.jpg",
+                md: "goat.jpg",
+                lg: "goat.jpg"
+            }
+        };
+    
+        heroes.push(customHero);
         filteredHeroes = [...heroes];
+    
         renderTable();
     };
 
@@ -227,5 +275,5 @@ document.addEventListener("DOMContentLoaded", () => {
             renderTable();
         }
     });
-    
+
 });
