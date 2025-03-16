@@ -105,13 +105,10 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         };
     
-        // Add custom heroes to the heroes array
         heroes.push(customHero1, customHero2);
     
-        // Now sort all heroes after adding custom heroes
         heroes.sort((a, b) => a.name.localeCompare(b.name));
-    
-        // Filter heroes based on search (optional)
+        
         filteredHeroes = [...heroes];
         
         renderTable();

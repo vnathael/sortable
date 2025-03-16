@@ -7,37 +7,42 @@
     <title>Super-humans Database</title>
 </head>
 <body>
-    <h1>Super-humans Database</h1>
-    <input type="text" id="search" placeholder="Rechercher un héros...">
-    <select id="page-size">
-        <option value="10">10</option>
-        <option value="20" selected>20</option>
-        <option value="50">50</option>
-        <option value="100">100</option>
-        <option value="732">Tous</option>
-    </select>
-    <table>
-        <thead>
-            <tr>
-                <th>Icon</th>
-                <th data-column="name">Name</th>
-                <th data-column="fullName">Full Name</th>
-                <th data-column="powerstats">Powerstats</th>
-                <th data-column="race">Race</th>
-                <th data-column="gender">Gender</th>
-                <th data-column="height">Height</th>
-                <th data-column="weight">Weight</th>
-                <th data-column="placeOfBirth">Place Of Birth</th>
-                <th data-column="alignment">Alignment</th>
-            </tr>
-        </thead>
-        <tbody id="table-body"></tbody>
-    </table>
-    <div id="pagination"></div>
+    <div class="container">
+        <h1>Super-humans Database</h1>
+        <div class="search-container">
+            <input type="text" id="search" placeholder="Rechercher un héros...">
+            <select id="page-size">
+                <option value="10">10</option>
+                <option value="20" selected>20</option>
+                <option value="50">50</option>
+                <option value="100">100</option>
+                <option value="732">Tous</option>
+            </select>
+        </div>
 
-    <div id="detail-view">
-        <button class="close-btn" onclick="closeDetailView()">✖</button>
-        <div id="hero-detail">
+        <table>
+            <thead>
+                <tr>
+                    <th>Icon</th>
+                    <th data-column="name">Name</th>
+                    <th data-column="fullName">Full Name</th>
+                    <th data-column="powerstats">Powerstats</th>
+                    <th data-column="race">Race</th>
+                    <th data-column="gender">Gender</th>
+                    <th data-column="height">Height</th>
+                    <th data-column="weight">Weight</th>
+                    <th data-column="placeOfBirth">Place Of Birth</th>
+                    <th data-column="alignment">Alignment</th>
+                </tr>
+            </thead>
+            <tbody id="table-body"></tbody>
+        </table>
+        <div id="pagination"></div>
+    </div>
+
+    <div id="detail-view" class="hidden">
+        <div class="detail-content">
+            <button class="close-btn" onclick="closeDetailView()">✖</button>
             <div class="hero-header">
                 <img id="detail-icon" src="" alt="Hero Image">
                 <h2 id="detail-name"></h2>
@@ -45,46 +50,46 @@
 
             <div class="hero-section">
                 <h3>Biography</h3>
-                <p><strong>Full Name:</strong> <span id="detail-fullName"></span></p>
-                <p><strong>Alter Egos:</strong> <span id="detail-alterEgos"></span></p>
-                <p><strong>Aliases:</strong> <span id="detail-aliases"></span></p>
-                <p><strong>First Appearance:</strong> <span id="detail-firstAppearance"></span></p>
-                <p><strong>Publisher:</strong> <span id="detail-publisher"></span></p>
-                <p><strong>Alignment:</strong> <span id="detail-alignment"></span></p>
+                <p><strong>Full Name:</strong> <span id="detail-fullName">-</span></p>
+                <p><strong>Alter Egos:</strong> <span id="detail-alterEgos">-</span></p>
+                <p><strong>Aliases:</strong> <span id="detail-aliases">-</span></p>
+                <p><strong>First Appearance:</strong> <span id="detail-firstAppearance">-</span></p>
+                <p><strong>Publisher:</strong> <span id="detail-publisher">-</span></p>
+                <p><strong>Alignment:</strong> <span id="detail-alignment">-</span></p>
             </div>
 
             <div class="hero-section">
                 <h3>Appearance</h3>
-                <p><strong>Gender:</strong> <span id="detail-gender"></span></p>
-                <p><strong>Race:</strong> <span id="detail-race"></span></p>
-                <p><strong>Height:</strong> <span id="detail-height"></span></p>
-                <p><strong>Weight:</strong> <span id="detail-weight"></span></p>
-                <p><strong>Eye Color:</strong> <span id="detail-eyeColor"></span></p>
-                <p><strong>Hair Color:</strong> <span id="detail-hairColor"></span></p>
+                <p><strong>Gender:</strong> <span id="detail-gender">-</span></p>
+                <p><strong>Race:</strong> <span id="detail-race">-</span></p>
+                <p><strong>Height:</strong> <span id="detail-height">-</span></p>
+                <p><strong>Weight:</strong> <span id="detail-weight">-</span></p>
+                <p><strong>Eye Color:</strong> <span id="detail-eyeColor">-</span></p>
+                <p><strong>Hair Color:</strong> <span id="detail-hairColor">-</span></p>
             </div>
 
             <div class="hero-section">
                 <h3>Powerstats</h3>
                 <div class="powerstats">
-                    <span><strong>Intelligence:</strong> <span id="detail-intelligence"></span></span>
-                    <span><strong>Strength:</strong> <span id="detail-strength"></span></span>
-                    <span><strong>Speed:</strong> <span id="detail-speed"></span></span>
-                    <span><strong>Durability:</strong> <span id="detail-durability"></span></span>
-                    <span><strong>Power:</strong> <span id="detail-power"></span></span>
-                    <span><strong>Combat:</strong> <span id="detail-combat"></span></span>
+                    <p><strong>Intelligence:</strong> <span id="detail-intelligence">-</span></p>
+                    <p><strong>Strength:</strong> <span id="detail-strength">-</span></p>
+                    <p><strong>Speed:</strong> <span id="detail-speed">-</span></p>
+                    <p><strong>Durability:</strong> <span id="detail-durability">-</span></p>
+                    <p><strong>Power:</strong> <span id="detail-power">-</span></p>
+                    <p><strong>Combat:</strong> <span id="detail-combat">-</span></p>
                 </div>
             </div>
 
             <div class="hero-section">
                 <h3>Work</h3>
-                <p><strong>Occupation:</strong> <span id="detail-occupation"></span></p>
-                <p><strong>Base:</strong> <span id="detail-base"></span></p>
+                <p><strong>Occupation:</strong> <span id="detail-occupation">-</span></p>
+                <p><strong>Base:</strong> <span id="detail-base">-</span></p>
             </div>
 
             <div class="hero-section">
                 <h3>Connections</h3>
-                <p><strong>Group Affiliation:</strong> <span id="detail-groupAffiliation"></span></p>
-                <p><strong>Relatives:</strong> <span id="detail-relatives"></span></p>
+                <p><strong>Group Affiliation:</strong> <span id="detail-groupAffiliation">-</span></p>
+                <p><strong>Relatives:</strong> <span id="detail-relatives">-</span></p>
             </div>
         </div>
     </div>
