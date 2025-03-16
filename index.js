@@ -215,4 +215,17 @@ document.addEventListener("DOMContentLoaded", () => {
     window.closeDetailView = function() {
         detailView.style.display = "none";
     }
+
+    document.addEventListener("keydown", (event) => {
+        const totalPages = Math.ceil(filteredHeroes.length / pageSize);
+    
+        if (event.key === "ArrowRight" && currentPage < totalPages) {
+            currentPage++;
+            renderTable();
+        } else if (event.key === "ArrowLeft" && currentPage > 1) {
+            currentPage--;
+            renderTable();
+        }
+    });
+    
 });
