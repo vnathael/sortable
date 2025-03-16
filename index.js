@@ -1,18 +1,27 @@
+// Commence après que tout soit chargé
 document.addEventListener("DOMContentLoaded", () => {
     const API_URL = "https://rawcdn.githack.com/akabab/superhero-api/0.2.0/api/all.json";
+    //Liste des héros + list des héros filré à ce moment
     let heroes = [];
     let filteredHeroes = [];
+    //Variables pour le tri
     let sortColumn = "name";
+    //Ordre de tri
     let sortOrder = "asc";
+    //Nombre de héros par page
     let pageSize = 20;
+    //Page actuelle
     let currentPage = 1;
 
+    //Récupération des éléments HTML pour montrer et trier les héros
     const tableBody = document.querySelector("#table-body");
     const searchInput = document.querySelector("#search");
     const pageSizeSelect = document.querySelector("#page-size");
     const pagination = document.querySelector("#pagination");
     const detailView = document.querySelector("#detail-view");
+    //Fonction pour charger les données
     const loadData = (data) => {
+        //Ajout des héros de l'API à la liste des héros
         heroes = data;
         
         const customHero1 = {
@@ -107,36 +116,48 @@ document.addEventListener("DOMContentLoaded", () => {
     
         heroes.push(customHero1, customHero2);
     
+        //Ajout manuel 
         heroes.sort((a, b) => a.name.localeCompare(b.name));
-        
         filteredHeroes = [...heroes];
         
+        //Affichage des héros
         renderTable();
     };
     
+    // Récupération des données de l'API avec fetch, appelle loadData
     fetch(API_URL)
         .then(response => response.json())
         .then(loadData);
     
+    // Rechercher 
     searchInput.addEventListener("input", () => {
+        //Mettre tout en minuscule
         const query = searchInput.value.toLowerCase();
+        //Filtrer les héros avec ce que tu viens d'écrire
         filteredHeroes = heroes.filter(hero => hero.name.toLowerCase().includes(query));
+        //Recommencer à la première page
         currentPage = 1;
         renderTable();
     });
 
+    //Changer la taille de la page
     pageSizeSelect.addEventListener("change", () => {
+        // Récupérer la valeur de la taille de la page
         pageSize = parseInt(pageSizeSelect.value);
         currentPage = 1;
         renderTable();
     });
 
+    // Fonction pour afficher les héros
     function renderTable() {
+        //Clear le tableau
         tableBody.innerHTML = "";
         const start = (currentPage - 1) * pageSize;
         const end = start + pageSize;
         const displayedHeroes = filteredHeroes.slice(start, end);
 
+        // Loop avec tous les héros et crée leurs colone
+        //print les infos demandées
         displayedHeroes.forEach(hero => {
             const row = document.createElement("tr");
             row.innerHTML = `
@@ -159,9 +180,13 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function renderPagination() {
+        //Clear la pagination
         pagination.innerHTML = "";
+        //Calculer le nombre de pages
         const totalPages = Math.ceil(filteredHeroes.length / pageSize);
 
+        //Créer un bouton pour chaque page
+        //Cliquer dessus change la page et update le tableau
         for (let i = 1; i <= totalPages; i++) {
             const button = document.createElement("button");
             button.textContent = i;
@@ -175,9 +200,13 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
+    //Tri des colonnes
     document.querySelectorAll("th").forEach(th => {
+        //Ajout d'un event listener pour chaque colonne
         th.addEventListener("click", () => {
+            //Récupérer la colonne
             const column = th.dataset.column;
+            //Si la colonne est la même que la colonne de tri actuelle, changer l'ordre de tri (asc à dsc)
             if (sortColumn === column) {
                 sortOrder = sortOrder === "asc" ? "desc" : "asc";
             } else {
@@ -189,14 +218,16 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
+    //Fonction pour trier les héros
     function sortTable() {
+        //Trier les héros en fonction de la colonne et de l'ordre de tri
         filteredHeroes.sort((a, b) => {
             let valA = getValue(a, sortColumn);
             let valB = getValue(b, sortColumn);
     
+            //Fais en sorte que si la valeur manque, elle passe à la fin
             const isMissingA = valA === null || valA === undefined || valA === "" || valA === "-" || valA === "Unknown" || valA === 0 || valA === "Place of birth unknown";
-            const isMissingB = valB === null || valB === undefined || valB === "" || valB === "-" || valB === "Unknown" || valB === 0 || valB === "Place of birth unknown";
-    
+            const isMissingB = valB === null || valB === undefined || valB === "" || valB === "-" || valB === "Unknown" || valB === 0 || valB === "Place of birth unknown"
             if (isMissingA && !isMissingB) return 1;
             if (isMissingB && !isMissingA) return -1;
     
@@ -276,34 +307,28 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById("detail-icon").src = hero.images.md;
         document.getElementById("detail-icon").alt = hero.name;
         document.getElementById("detail-name").textContent = hero.name;
-    
         document.getElementById("detail-fullName").textContent = hero.biography.fullName || "N/A";
         document.getElementById("detail-alterEgos").textContent = hero.biography.alterEgos || "N/A";
         document.getElementById("detail-aliases").textContent = hero.biography.aliases.join(", ") || "N/A";
         document.getElementById("detail-firstAppearance").textContent = hero.biography.firstAppearance || "N/A";
         document.getElementById("detail-publisher").textContent = hero.biography.publisher || "N/A";
         document.getElementById("detail-alignment").textContent = hero.biography.alignment;
-    
         document.getElementById("detail-gender").textContent = hero.appearance.gender;
         document.getElementById("detail-race").textContent = hero.appearance.race || "Unknown";
         document.getElementById("detail-height").textContent = hero.appearance.height[1];
         document.getElementById("detail-weight").textContent = hero.appearance.weight[1];
         document.getElementById("detail-eyeColor").textContent = hero.appearance.eyeColor;
         document.getElementById("detail-hairColor").textContent = hero.appearance.hairColor;
-    
         document.getElementById("detail-intelligence").textContent = hero.powerstats.intelligence;
         document.getElementById("detail-strength").textContent = hero.powerstats.strength;
         document.getElementById("detail-speed").textContent = hero.powerstats.speed;
         document.getElementById("detail-durability").textContent = hero.powerstats.durability;
         document.getElementById("detail-power").textContent = hero.powerstats.power;
         document.getElementById("detail-combat").textContent = hero.powerstats.combat;
-    
         document.getElementById("detail-occupation").textContent = hero.work.occupation || "N/A";
         document.getElementById("detail-base").textContent = hero.work.base || "N/A";
-    
         document.getElementById("detail-groupAffiliation").textContent = hero.connections.groupAffiliation || "N/A";
         document.getElementById("detail-relatives").textContent = hero.connections.relatives || "N/A";
-    
         document.getElementById("detail-view").style.display = "block";
     }
 
@@ -328,10 +353,12 @@ document.addEventListener("DOMContentLoaded", () => {
 document.addEventListener("DOMContentLoaded", function () {
     let selectedHeroes = { left: null, right: null };
 
+    // Select le héros en detail view
     document.getElementById("make-it-fight").addEventListener("click", function () {
         let detailedHero = getHeroFromDetailedView();
         if (!detailedHero) return;
 
+    //l'asssigne sur la gauche, sinon la droite.
         if (!selectedHeroes.left) {
             selectedHeroes.left = detailedHero;
         } else if (!selectedHeroes.right) {
@@ -344,7 +371,9 @@ document.addEventListener("DOMContentLoaded", function () {
         updateSelectedHeroes();
     });
 
+    //Fight méchanique
     document.getElementById("fight-button").addEventListener("click", function () {
+        //vérifie si il y a deux héros avant le combat
         if (!selectedHeroes.left || !selectedHeroes.right) {
             alert("Please select both heroes before fighting!");
             return;
@@ -374,10 +403,12 @@ document.addEventListener("DOMContentLoaded", function () {
         return { name, icon, strength, speed, durability, power, combat };
     }
 
+    // calcul le combat pour voir qui gagne
     function fightHeroes(hero1, hero2) {
         const hero1Strength = hero1.strength + hero1.speed + hero1.durability + hero1.power + hero1.combat;
         const hero2Strength = hero2.strength + hero2.speed + hero2.durability + hero2.power + hero2.combat;
 
+        //Définis qui gagne
         let resultText = `${hero1.name} (${hero1Strength}) vs ${hero2.name} (${hero2Strength}) → `;
         if (hero1Strength > hero2Strength) {
             resultText += `${hero1.name} Wins!`;
