@@ -324,3 +324,89 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
 });
+
+document.addEventListener("DOMContentLoaded", function () {
+    let selectedHeroes = { left: null, right: null };
+
+    document.getElementById("make-it-fight").addEventListener("click", function () {
+        let detailedHero = getHeroFromDetailedView();
+        if (!detailedHero) return;
+
+        if (!selectedHeroes.left) {
+            selectedHeroes.left = detailedHero;
+        } else if (!selectedHeroes.right) {
+            selectedHeroes.right = detailedHero;
+        } else {
+            selectedHeroes.left = detailedHero;
+            selectedHeroes.right = null;
+        }
+
+        updateSelectedHeroes();
+    });
+
+    document.getElementById("fight-button").addEventListener("click", function () {
+        if (!selectedHeroes.left || !selectedHeroes.right) {
+            alert("Please select both heroes before fighting!");
+            return;
+        }
+
+        let hero1 = selectedHeroes.left;
+        let hero2 = selectedHeroes.right;
+
+        const result = fightHeroes(hero1, hero2);
+        document.getElementById("fight-result").textContent = result;
+        document.getElementById("fight-result").style.display = 'block';
+    });
+
+    document.getElementById("reset-button").addEventListener("click", function () {
+        resetSelection();
+    });
+
+    function getHeroFromDetailedView() {
+        let name = document.getElementById("detail-name").textContent;
+        let icon = document.getElementById("detail-icon").src;
+        let strength = parseInt(document.getElementById("detail-strength").textContent) || 0;
+        let speed = parseInt(document.getElementById("detail-speed").textContent) || 0;
+        let durability = parseInt(document.getElementById("detail-durability").textContent) || 0;
+        let power = parseInt(document.getElementById("detail-power").textContent) || 0;
+        let combat = parseInt(document.getElementById("detail-combat").textContent) || 0;
+
+        return { name, icon, strength, speed, durability, power, combat };
+    }
+
+    function fightHeroes(hero1, hero2) {
+        const hero1Strength = hero1.strength + hero1.speed + hero1.durability + hero1.power + hero1.combat;
+        const hero2Strength = hero2.strength + hero2.speed + hero2.durability + hero2.power + hero2.combat;
+
+        let resultText = `${hero1.name} (${hero1Strength}) vs ${hero2.name} (${hero2Strength}) → `;
+        if (hero1Strength > hero2Strength) {
+            resultText += `${hero1.name} Wins!`;
+        } else if (hero1Strength < hero2Strength) {
+            resultText += `${hero2.name} Wins!`;
+        } else {
+            resultText += "It's a Draw!";
+        }
+
+        return resultText;
+    }
+
+    function updateSelectedHeroes() {
+        document.getElementById("selected-left-name").textContent = selectedHeroes.left ? selectedHeroes.left.name : "-";
+        document.getElementById("selected-right-name").textContent = selectedHeroes.right ? selectedHeroes.right.name : "-";
+        
+        document.getElementById("selected-left-icon").src = selectedHeroes.left ? selectedHeroes.left.icon : "";
+        document.getElementById("selected-right-icon").src = selectedHeroes.right ? selectedHeroes.right.icon : "";
+    }
+
+    function resetSelection() {
+        selectedHeroes.left = null;
+        selectedHeroes.right = null;
+
+        document.getElementById("selected-left-name").textContent = '-';
+        document.getElementById("selected-right-name").textContent = '-';
+        document.getElementById("selected-left-icon").src = '';
+        document.getElementById("selected-right-icon").src = '';
+
+        document.getElementById("fight-result").style.display = 'none';
+    }
+});

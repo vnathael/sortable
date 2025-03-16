@@ -91,7 +91,31 @@
                 <p><strong>Group Affiliation:</strong> <span id="detail-groupAffiliation">-</span></p>
                 <p><strong>Relatives:</strong> <span id="detail-relatives">-</span></p>
             </div>
+
+            <button id="make-it-fight">FIGHT !</button>
         </div>
+    </div>
+
+    <div id="fight-section">
+        <h3>Fight Selection</h3>
+        <div class="selected-heroes">
+            <div id="selected-left" class="selected-hero">
+                <div class="hero-icon-container" id="selected-left-icon-container">
+                    <img id="selected-left-icon" src="" alt="Left Hero Icon">
+                </div>
+                <div id="selected-left-name" class="hero-name">-</div>
+            </div>
+            <span class="vs-text">VS</span>
+            <div id="selected-right" class="selected-hero">
+                <div class="hero-icon-container" id="selected-right-icon-container">
+                    <img id="selected-right-icon" src="" alt="Right Hero Icon">
+                </div>
+                <div id="selected-right-name" class="hero-name">-</div>
+            </div>
+        </div>
+        <button id="fight-button">Fight!</button>
+        <button id="reset-button">Reset</button>
+        <p id="fight-result" class="fight-result"></p>
     </div>
 
     <script src="index.js"></script>

@@ -91,6 +91,7 @@ button:hover {
     position: fixed;
     top: 50%;
     left: 50%;
+    border: 1px solid #e6579e;
     transform: translate(-50%, -50%);
     width: 90%;
     max-width: 600px;
@@ -191,4 +192,103 @@ button:hover {
     th, td {
         padding: 8px;
     }
+}
+
+#fight-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 30px;
+}
+
+.selected-heroes {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.selected-hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 30px;
+    text-align: center;
+}
+
+.hero-icon-container {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 10px;
+    background-color: #a073d3;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-icon-container img {
+    display: hidden;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+}
+
+.hero-name {
+    font-weight: bold;
+    color: #e6579e;
+    font-size: 1.2rem;
+}
+
+.vs-text {
+    font-size: 1.5rem;
+    color: #e6579e;
+    font-weight: bold;
+    margin: 0 20px;
+}
+
+.fight-result {
+    font-size: 1.5rem;
+    color: #FF66B2;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 20px;
+    display: none;
+}
+
+.hero-icon-container img {
+    display: none;
+}
+
+.selected-hero .hero-icon-container img {
+    display: block;
+}
+
+.selected-hero .hero-name {
+    font-style: italic;
+    color: #888;
+}
+
+button {
+    background-color: #A64AC9;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    margin: 5px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #D55FAA;
+}
+
+#reset-button {
+    background-color: #4c2569;
+    color: white;
+}
+
+#reset-button:hover {
+    background-color: #9e4b88;
 }
