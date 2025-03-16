@@ -12,10 +12,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const pageSizeSelect = document.querySelector("#page-size");
     const pagination = document.querySelector("#pagination");
     const detailView = document.querySelector("#detail-view");
-
     const loadData = (data) => {
         heroes = data;
-    
+        
         const customHero1 = {
             id: 732, 
             name: "Quentin LE GOAT",
@@ -60,7 +59,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 lg: "goat.jpg"
             }
         };
-
+    
         const customHero2 = {
             id: 733, 
             name: "Bunny bun",
@@ -106,17 +105,22 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         };
     
-        heroes.push(customHero1);
-        heroes.push(customHero2);
-        filteredHeroes = [...heroes];
+        // Add custom heroes to the heroes array
+        heroes.push(customHero1, customHero2);
     
+        // Now sort all heroes after adding custom heroes
+        heroes.sort((a, b) => a.name.localeCompare(b.name));
+    
+        // Filter heroes based on search (optional)
+        filteredHeroes = [...heroes];
+        
         renderTable();
     };
-
+    
     fetch(API_URL)
         .then(response => response.json())
         .then(loadData);
-
+    
     searchInput.addEventListener("input", () => {
         const query = searchInput.value.toLowerCase();
         filteredHeroes = heroes.filter(hero => hero.name.toLowerCase().includes(query));
